@@ -29,15 +29,15 @@
     </el-header>
     <el-container class="container-button">
       <el-aside width="201px">
-        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+        <el-menu router default-active="/file" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                  :collapse="isCollapse">
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span slot="title">导航一</span>
+              <span slot="title">管理中心</span>
             </template>
             <el-menu-item-group>
-              <span slot="title">分组一</span>
+              <span slot="title">文件管理</span>
               <el-menu-item index="1-1">选项1</el-menu-item>
               <el-menu-item index="1-2">选项2</el-menu-item>
             </el-menu-item-group>
@@ -49,17 +49,17 @@
               <el-menu-item index="1-4-1">选项1</el-menu-item>
             </el-submenu>
           </el-submenu>
-          <el-menu-item index="2">
+          <el-menu-item index="2"  disabled>
             <i class="el-icon-menu"></i>
-            <span slot="title">导航二</span>
+            <span slot="title">菜单中心</span>
           </el-menu-item>
-          <el-menu-item index="3" disabled>
+          <el-menu-item index="/file">
             <i class="el-icon-document"></i>
-            <span slot="title">导航三</span>
+            <span slot="title">文件管理</span>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="4"  disabled>
             <i class="el-icon-setting"></i>
-            <span slot="title">导航四</span>
+            <span slot="title">配置中心</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
