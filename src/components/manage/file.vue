@@ -73,7 +73,6 @@
         },
         mounted(){
             this.list();
-            console.log("123")
         },
         methods:{
             list(){
@@ -97,14 +96,14 @@
             downloadFile(id,name){
                 let link = document.createElement('a');
                 link.setAttribute("download", "");
-                link.href = '/api/spider/downloadFile?id=' + id;
+                link.href = '/spider/downloadFile?id=' + id;
                 link.download = name;
                 link.click();
             },
             uploadFile(){
                 let formData = new FormData();
                 formData.append("file", $("#file")[0].files[0]);
-                this.$postform('/api/spider/uploadFile?fileType=1',formData)
+                this.$postform('/spider/uploadFile?fileType=1',formData)
                     .then(res=>{
                         if(res.code == 1){
                             this.list();
