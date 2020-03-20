@@ -51,9 +51,9 @@
           @current-change="handleCurrentChange"
           :current-page="currentPage"
           :page-sizes="[10, 20, 50, 100]"
-          :page-size="10"
+          :page-size="pageSize"
           layout="total, sizes, prev, pager, next, jumper"
-          :total="100">
+          :total="totalNum">
         </el-pagination>
       </div>
     </div>
@@ -68,11 +68,17 @@
             return {
                 tableData: [],
                 currentPage:1,
+                pageSize:10,
+                totalNum:0,
                 fileList:[]
             }
         },
         mounted(){
-            this.list();
+            // this.list();
+            // this.page();
+        },
+        created(){
+            this.page();
         },
         methods:{
             list(){
@@ -84,14 +90,33 @@
                             console.log("获取列表失败");
                         }
                     }).catch(e=>{
-                    console.log();e
+                    console.log();
+                })
+            },
+            page(){
+                this.$post('/spider/pageFile',{pageNum:this.currentPage,numPerPage:this.pageSize})
+                    .then(res=>{
+                        if(res.code == 1){
+                            this.tableData = res.data.recordList;
+                            this.currentPage = res.data.currentPage;
+                            this.pageSize = res.data.numPerPage;
+                            this.totalNum = res.data.totalCount;
+                        }else{
+                            console.log("获取列表失败");
+                        }
+                    }).catch(e=>{
+                    console.log();
                 })
             },
             handleSizeChange(val) {
                 console.log(`每页 ${val} 条`);
+                this.pageSize = val;
+                this.page();
             },
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
+                this.currentPage = val;
+                this.page();
             },
             downloadFile(id,name){
                 let link = document.createElement('a');

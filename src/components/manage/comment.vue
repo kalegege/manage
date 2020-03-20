@@ -45,7 +45,8 @@
         data() {
             return {
                 textarea: '',
-                commentData:[]
+                commentData:[],
+                activeTab:"/comment"
             }
         },
         mounted() {
