@@ -8,45 +8,54 @@
         </el-breadcrumb>
       </el-col>
     </el-row>
-    <el-row>
-      <el-col :span="12">
-        <el-input
-          type="textarea"
-          size="medium"
-          :autosize="{ minRows: 2, maxRows: 20}"
-          placeholder="请输入内容"
-          v-model="textarea"
-        ></el-input>
-      </el-col>
-    </el-row>
-    <el-row>
-      <div>
-        <el-button slot="trigger" size="small" type="primary" @click="insertComment">提交</el-button>
-      </div>
-    </el-row>
-    <el-row>
-      <el-col :span="15" v-for='(item,index) in commentData' :keys="item.id" class="comment-item">
-        <div>
-          <el-button slot="trigger" size="small" type="danger" @click="deleteComment(item.id)">删除</el-button>
-        </div>
-        <span >{{item.comment}}</span>
-        <el-divider></el-divider>
-      </el-col>
-
-    </el-row>
+    <el-table
+      :data="tableData"
+      border
+      style="width: 100%">
+      <el-table-column
+        prop="id"
+        label="序号"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="dataType"
+        label="数据类别"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="dataCode"
+        label="数据编码"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="dataValue"
+        :formatter="getStatus"
+        label="数据值">
+      </el-table-column>
+      <el-table-column
+        prop="dataDesc"
+        :formatter="getStatus"
+        label="数据描述">
+      </el-table-column>
+      <el-table-column
+        prop="ctime"
+        :formatter="dateFormat"
+        label="创建时间">
+      </el-table-column>
+    </el-table>
 
   </div>
 
 </template>
 
 <script>
+    import moment from 'moment'
     export default {
         name: 'comment',
         data() {
             return {
-                textarea: '',
-                commentData:[],
-                activeTab:"/comment"
+                tableData:[],
+                activeTab:"/config"
             }
         },
         mounted() {
@@ -54,11 +63,10 @@
         },
         methods: {
             list() {
-                this.$post('/spider/comment/list', {})
+                this.$post('/spider/config/list', {})
                     .then(res => {
                         if (res.code == 1) {
-                            this.commentData = res.data;
-                            this.textarea = '';
+                            this.tableData = res.data;
                             this.$notify({
                                 title: '成功',
                                 message: '获取列表成功',
@@ -69,11 +77,10 @@
                         }
                     }).catch(e => {
                     console.log();
-                    e
                 })
             },
-            deleteComment(id){
-                this.$post("/spider/comment/delete",{id:id})
+            deleteConfig(id){
+                this.$post("/spider/config/delete",{id:id})
                     .then(res => {
                         if (res.code == 1) {
                             this.list();
@@ -85,8 +92,8 @@
                     console.log();
                 })
             },
-            insertComment(){
-                this.$post("/spider/comment/insert",{comment:this.textarea})
+            insertConfig(){
+                this.$post("/spider/config/insert",{comment:this.textarea})
                     .then(res => {
                         if (res.code == 1) {
                             this.list();
@@ -97,36 +104,10 @@
                     console.log();
                 })
             },
-            downloadFile(id, name) {
-                let link = document.createElement('a');
-                link.setAttribute("download", "");
-                link.href = '/api/spider/downloadFile?id=' + id;
-                link.download = name;
-                link.click();
-            },
-            uploadFile() {
-                let formData = new FormData();
-                formData.append("file", $("#file")[0].files[0]);
-                this.$postform('/api/spider/uploadFile?fileType=1', formData)
-                    .then(res => {
-                        if (res.code == 1) {
-                            this.list();
-                        } else {
-                            console.log("获取列表失败");
-                        }
-                    }).catch(e => {
-                    console.log();
-                })
-            },
-            handleRemove(file, fileList) {
-                console.log(file, fileList);
-            },
-            handlePreview(file) {
-                console.log(file);
-            },
-            submitUpload() {
-                this.$refs.upload.submit();
-                this.list();
+            dateFormat:function(row,column) {
+                var date = row[column.property];
+                if(date == undefined){return ''};
+                return moment(date).format("YYYY-MM-DD HH:mm:ss")
             }
         },
         filter: {
