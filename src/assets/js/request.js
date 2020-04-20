@@ -2,7 +2,7 @@ import axios from 'axios';
 import qs from 'qs'
 // import apiConfig from './option';
 
-axios.defaults.baseURL = process.env.API_ROOT;
+// axios.defaults.baseURL = process.env.API_ROOT;
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 // axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';

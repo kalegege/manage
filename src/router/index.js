@@ -7,6 +7,7 @@ import CopClass from '@/components/EnterPage'
 import Index from '@/components/index'
 import File from '@/components/manage/file'
 import Comment from '@/components/manage/comment'
+import Config from '@/components/manage/config'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       path: '/comment/',
       name: 'Comment',
       component: Comment
+    },
+    {
+      path: '/config/',
+      name: 'Config',
+      component: Config
     }
   ]
 })

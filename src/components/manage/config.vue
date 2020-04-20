@@ -4,7 +4,7 @@
       <el-col :span="24">
         <el-breadcrumb separator-class="el-icon-arrow-right">
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>评论管理</el-breadcrumb-item>
+          <el-breadcrumb-item>配置管理</el-breadcrumb-item>
         </el-breadcrumb>
       </el-col>
     </el-row>
@@ -25,7 +25,7 @@
       </div>
     </el-row>
     <el-row>
-      <el-col :span="15" v-for='(item,index) in commentData' v-bind:key="item.id" class="comment-item">
+      <el-col :span="15" v-for='(item,index) in commentData' :keys="item.id" class="comment-item">
         <div>
           <el-button slot="trigger" size="small" type="danger" @click="deleteComment(item.id)">删除</el-button>
         </div>

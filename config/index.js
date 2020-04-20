@@ -11,7 +11,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-
+      '/spider': {
+        // target: 'http://localhost:10001/spider',
+        target: 'http://192.168.79.128:10001/spider',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/spider': '/'
+        }
+      }
     },
 
     // Various Dev Server settings
