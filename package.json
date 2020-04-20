@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "latest",
     "element-ui": "latest",
+    "moment": "^2.24.0",
     "qs": "latest",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",

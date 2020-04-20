@@ -35,6 +35,7 @@
         </el-table-column>
         <el-table-column
           prop="ctime"
+          :formatter="dateFormat"
           label="上传时间">
         </el-table-column>
         <el-table-column label="操作" align="center" min-width="100">
@@ -62,6 +63,7 @@
 </template>
 
 <script>
+    import moment from 'moment'
     export default {
         name: 'file',
         data() {
@@ -148,6 +150,11 @@
             submitUpload() {
                 this.$refs.upload.submit();
                 this.list();
+            },
+            dateFormat:function(row,column) {
+                var date = row[column.property];
+                if(date == undefined){return ''};
+                return moment(date).format("YYYY-MM-DD HH:mm:ss")
             }
         },
         filter:{

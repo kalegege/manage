@@ -41,6 +41,7 @@
               <el-menu-item index="/file">文件管理</el-menu-item>
               <el-menu-item index="/comment">评论管理</el-menu-item>
               <el-menu-item index="/config">配置管理</el-menu-item>
+              <el-menu-item index="/task">任务管理</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group title="分组2">
               <el-menu-item index="1-3">选项3</el-menu-item>

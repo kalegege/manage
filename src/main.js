@@ -7,7 +7,6 @@ import { get, post, postform } from './assets/js/request'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
-
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$get = get;

@@ -8,6 +8,7 @@ import Index from '@/components/index'
 import File from '@/components/manage/file'
 import Comment from '@/components/manage/comment'
 import Config from '@/components/manage/config'
+import Task from '@/components/manage/task'
 
 Vue.use(Router)
 
@@ -42,6 +43,11 @@ export default new Router({
       path: '/config/',
       name: 'Config',
       component: Config
+    },
+    {
+      path: '/task/',
+      name: 'Task',
+      component: Task
     }
   ]
 })
