@@ -36,15 +36,14 @@
               <i class="el-icon-location"></i>
               <span slot="title">业务中心</span>
             </template>
-            <el-menu-item-group>
-              <span slot="title">管理中心</span>
+            <el-menu-item-group title="管理中心">
               <el-menu-item index="/file">文件管理</el-menu-item>
               <el-menu-item index="/comment">评论管理</el-menu-item>
               <el-menu-item index="/config">配置管理</el-menu-item>
               <el-menu-item index="/task">任务管理</el-menu-item>
             </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
+            <el-menu-item-group title="业务中心">
+              <el-menu-item index="/report">研报中心</el-menu-item>
             </el-menu-item-group>
             <el-submenu index="1-4">
               <span slot="title">选项4</span>

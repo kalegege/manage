@@ -9,6 +9,7 @@ import File from '@/components/manage/file'
 import Comment from '@/components/manage/comment'
 import Config from '@/components/manage/config'
 import Task from '@/components/manage/task'
+import Report from '@/components/manage/report'
 
 Vue.use(Router)
 
@@ -48,6 +49,11 @@ export default new Router({
       path: '/task/',
       name: 'Task',
       component: Task
+    },
+    {
+      path: '/report/',
+      name: 'Report',
+      component: Report
     }
   ]
 })

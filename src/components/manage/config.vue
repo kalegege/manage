@@ -29,12 +29,10 @@
       </el-table-column>
       <el-table-column
         prop="dataValue"
-        :formatter="getStatus"
         label="数据值">
       </el-table-column>
       <el-table-column
         prop="dataDesc"
-        :formatter="getStatus"
         label="数据描述">
       </el-table-column>
       <el-table-column
